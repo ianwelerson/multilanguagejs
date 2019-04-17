@@ -1,0 +1,23 @@
+{
+  "name": "multilanguagejs",
+  "version": "0.1.1",
+  "description": "A simple way to use multi language in static sites.",
+  "main": "multilanguagejs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianwelerson/multilanguagejs.git"
+  },
+  "keywords": [
+    "multilanguage",
+    "javascript"
+  ],
+  "author": "Ian Welerson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ianwelerson/multilanguagejs/issues"
+  },
+  "homepage": "http://multilanguagejs.ianwelerson.com/"
+}
