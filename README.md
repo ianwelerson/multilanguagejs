@@ -1,4 +1,4 @@
-# MultilangueJS - Multi language for static sites
+# MultilanguageJS - Multi language for static sites
 
 A simple way to use multi language in static sites. 
 
@@ -13,7 +13,7 @@ You can install using yarn or by cloning the repo.
 $ yarn add https://github.com/ianwelerson/multilanguagejs.git
 ```
 
-#### Using Github
+#### Using the repo
 
 ```
 $ git clone https://github.com/ianwelerson/multilanguagejs.git
