@@ -53,8 +53,8 @@ class MultilanguageJS {
     * Set the page language by browser language
   */
   setLanguageByBrowser() {
-      
-    let browserLanguage = navigator.language || navigator.userLanguage; 
+
+    let browserLanguage = navigator.language || navigator.userLanguage;
 
     this.setLanguage(browserLanguage);
 
@@ -93,6 +93,7 @@ class MultilanguageJS {
   getLanguageTemplates() {
   
     let templates = document.querySelectorAll(`template[type=language-group]`);
+    console.log(templates)
     
     return templates;
   
