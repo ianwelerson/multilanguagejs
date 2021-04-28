@@ -1,6 +1,13 @@
 import MultilanguageJS from './../multilanguagejs';
 
-describe('multilanguage', () => {
+// Loads a sample HTML page
+const fs = require('fs');
+const path = require('path');
+const pageWithContent = fs.readFileSync(path.resolve(__dirname, './mocks/pageWithContent.html'), 'utf8');
+const pageWithoutContent = fs.readFileSync(path.resolve(__dirname, './mocks/pageWithoutContent.html'), 'utf8');
+jest.dontMock('fs');
+
+describe('module configuration', () => {
   const acceptedLanguages = ['pt-BR', 'en-US'];
   const defaultLanguage = 'pt-BR';
   let multilanguage;
@@ -49,10 +56,54 @@ describe('multilanguage', () => {
 
     expect(multilanguage.getActiveLanguage()).toBe('pt-BR');
   });
+});
 
-  test('getting content from page', () => {
-    const content = multilanguage.getLanguageTemplates();
+describe('html interaction', () => {
+  const acceptedLanguages = ['pt-BR', 'en-US'];
+  const defaultLanguage = 'pt-BR';
+  let multilanguage;
 
-    expect(console).toBe(null);
-  })
+  beforeEach(() => {
+    multilanguage = new MultilanguageJS(acceptedLanguages, defaultLanguage);
+  });
+
+  afterEach(() => {
+    jest.resetModules();
+  });
+
+  describe('page without content', () => {
+    beforeEach(() => {
+      document.documentElement.innerHTML = pageWithoutContent.toString();
+    });
+
+    test('return zero items if page has no language-group', () => {  
+      const content = multilanguage.getLanguageTemplates();
+  
+      expect(content).toHaveLength(0);
+    });
+  });
+
+  describe('page with content', () => {
+    beforeEach(() => {
+      document.documentElement.innerHTML = pageWithContent.toString();
+    });
+
+    test('return correct number of items', () => {
+      const content = multilanguage.getLanguageTemplates();
+  
+      expect(content).toHaveLength(9);
+    });
+
+    test('return correct number of visible contents', () => {
+      const content = document.querySelectorAll(`[language="en-US"]`);
+  
+      expect(content).toHaveLength(9);
+    });
+
+    test('return correct number of visible contents', () => {
+      multilanguage.showNewContent();
+  
+      expect(true).toBe(true);
+    });
+  });
 });
