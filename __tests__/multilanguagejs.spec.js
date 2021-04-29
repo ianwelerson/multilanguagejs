@@ -4,6 +4,7 @@ import MultilanguageJS from './../multilanguagejs';
 const fs = require('fs');
 const path = require('path');
 const pageWithContent = fs.readFileSync(path.resolve(__dirname, './mocks/pageWithContent.html'), 'utf8');
+const pageWithContentMissing = fs.readFileSync(path.resolve(__dirname, './mocks/pageWithContentMissing.html'), 'utf8');
 const pageWithoutContent = fs.readFileSync(path.resolve(__dirname, './mocks/pageWithoutContent.html'), 'utf8');
 jest.dontMock('fs');
 
@@ -100,10 +101,56 @@ describe('html interaction', () => {
       expect(content).toHaveLength(9);
     });
 
-    test('return correct number of visible contents', () => {
-      multilanguage.showNewContent();
+    test('update correctly after language change', () => {
+      const numberOfContents = 9;
+      // Getting the active contents
+      const originalContentBefore = document.querySelectorAll(`[language="en-US"]`);
+      // Change language
+      multilanguage.setLanguage('pt-BR');
+      // Get old language content
+      const originalContentAfter = document.querySelectorAll(`[language="en-US"]`);
+      // Get new content
+      const newContents = document.querySelectorAll(`[language="pt-BR"]`);
   
-      expect(true).toBe(true);
+      expect(originalContentBefore).toHaveLength(numberOfContents);
+      expect(originalContentAfter).toHaveLength(0);
+      expect(newContents).toHaveLength(numberOfContents);
+      expect(document.body).toMatchSnapshot();
+    });
+  });
+
+  describe('page with missing content', () => {
+    beforeEach(() => {
+      document.documentElement.innerHTML = pageWithContentMissing.toString();
+    });
+
+    test('return correct number of items', () => {
+      const content = multilanguage.getLanguageTemplates();
+  
+      expect(content).toHaveLength(9);
+    });
+
+    test('return correct number of visible contents', () => {
+      const content = document.querySelectorAll(`[language="en-US"]`);
+  
+      expect(content).toHaveLength(9);
+    });
+
+    test('update only where have content', () => {
+      const numberOfContents = 9;
+      // Getting the active contents
+      const originalContentBefore = document.querySelectorAll(`[language="en-US"]`);
+      // Change language
+      multilanguage.setLanguage('pt-BR');
+      // Get old language content
+      const originalContentAfter = document.querySelectorAll(`[language="en-US"]`);
+      // Get new content
+      const newContents = document.querySelectorAll(`[language="pt-BR"]`);
+  
+      expect(originalContentBefore).toHaveLength(numberOfContents);
+      expect(originalContentAfter).toHaveLength(0);
+      expect(newContents).toHaveLength(numberOfContents);
+      expect(document.body).toMatchSnapshot();
     });
   });
 });

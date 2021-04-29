@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`html interaction page with content update correctly after language change 1`] = `
+<body>
+  
+  
+  <main>
+    
+    
+    <h1
+      data-test="body-title"
+      language="pt-BR"
+    >
+      Essa é uma simples página
+    </h1>
+    <template
+      type="language-group"
+    />
+    
+    
+    
+    
+    
+    <p
+      data-test="f-paragraph"
+      language="pt-BR"
+    >
+      Esse é o meu primeiro paragráfo.
+    </p>
+    <template
+      type="language-group"
+    />
+    
+    
+    
+
+    
+    <p
+      class="awesome"
+      data-test="s-paragraph"
+      language="pt-BR"
+    >
+      Esse é meu segundo paragráfo.
+    </p>
+    <template
+      type="language-group"
+    />
+    
+    
+    
+
+    
+    <p
+      class="awesome"
+      data-test="t-paragraph"
+      id="third"
+      language="pt-BR"
+    >
+      Esse é meu terceiro paragráfo.
+    </p>
+    <template
+      type="language-group"
+    />
+    
+    
+    
+    
+    
+    <ul
+      data-test="list"
+    >
+      
+      
+      <li
+        data-test="list-f-item"
+        language="pt-BR"
+      >
+        Meu primeiro item
+      </li>
+      <template
+        type="language-group"
+      />
+      
+      
+      
+
+      
+      <li
+        data-test="list-s-item"
+        language="pt-BR"
+      >
+        Meu segundo item
+      </li>
+      <template
+        type="language-group"
+      />
+      
+      
+      
+
+      
+      <li
+        data-test="list-s-item"
+        language="pt-BR"
+      >
+        Meu terceiro item
+      </li>
+      <template
+        type="language-group"
+      />
+      
+      
+      
+    
+    </ul>
+    
+
+    
+    <ul
+      data-test="list-complete"
+      language="pt-BR"
+    >
+      
+        
+      <li>
+        Meu primeiro item
+      </li>
+      
+        
+      <li>
+        Meu segundo item
+      </li>
+      
+        
+      <li>
+        Meu terceiro item
+      </li>
+      
+      
+    </ul>
+    <template
+      type="language-group"
+    />
+    
+    
+    
+  
+  </main>
+  
+
+
+</body>
+`;
