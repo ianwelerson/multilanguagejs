@@ -80,6 +80,26 @@ multilanguage.getDefaultLanguage();
 multilanguage.setLanguageByBrowser();
 ```
 
+## Next version (v1.0.0)
+I will start a refatoring of all library very soon.
+
+My intentions is to create the simplest way to provide a internationalization for static website, without json files and things like that, you will need just the old and good HTML (and a few lines of js).
+
+After this refatoring I will put this library on `npm` and CDN.
+
+This are the next steps:
+
+- [X] Implement Unit Tests
+- [ ] Fix issue when has no content for specific language on language block
+- [ ] Return Promises in all methods, with information about whats happened
+- [ ] Remove all `console.log`
+- [ ] Add inline translate strings, using `data-` property
+- [ ] Implement GitHub actions for: unit tests and publish
+- [ ] Improve documentation
+- [ ] Publish on `npm`
+- [ ] Publish on CDN
+
+
 ## Author
 
 * **Ian Welerson** [IanWelerson.com](http://ianwelerson.com)
