@@ -1,7 +1,7 @@
 {
   "name": "multilanguagejs",
-  "version": "1.0.0",
-  "description": "A simple way to use multi language in static sites.",
+  "version": "0.1.0",
+  "description": "A simple way to have internationalization on static websites.",
   "main": "multilanguagejs.js",
   "scripts": {
     "test": "jest"

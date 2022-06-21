@@ -1,6 +1,6 @@
 # MultilanguageJS - Multi language for static sites
 
-A simple way to use multi language in static sites. 
+A simple way to have internationalization on static websites.
 
 ## Installing
 
