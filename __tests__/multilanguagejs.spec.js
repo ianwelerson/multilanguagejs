@@ -3,9 +3,9 @@ import MultilanguageJS from './../multilanguagejs';
 // Loads a sample HTML page
 const fs = require('fs');
 const path = require('path');
-const pageWithContent = fs.readFileSync(path.resolve(__dirname, './mocks-pages/pageWithContent.html'), 'utf8');
-const pageWithContentMissing = fs.readFileSync(path.resolve(__dirname, './mocks-pages/pageWithContentMissing.html'), 'utf8');
-const pageWithoutContent = fs.readFileSync(path.resolve(__dirname, './mocks-pages/pageWithoutContent.html'), 'utf8');
+const pageWithContent = fs.readFileSync(path.resolve(__dirname, './__mocks__/pageWithContent.html'), 'utf8');
+const pageWithContentMissing = fs.readFileSync(path.resolve(__dirname, './__mocks__/pageWithContentMissing.html'), 'utf8');
+const pageWithoutContent = fs.readFileSync(path.resolve(__dirname, './__mocks__/pageWithoutContent.html'), 'utf8');
 jest.dontMock('fs');
 
 describe('module configuration', () => {
