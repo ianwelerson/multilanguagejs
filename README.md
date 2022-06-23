@@ -1,4 +1,4 @@
-# MultilanguageJS - Multi language for static sites
+# MultilanguageJS
 
 A simple way to have internationalization on static websites. 
 
