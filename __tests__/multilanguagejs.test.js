@@ -14,6 +14,10 @@ function mountPage(pageString) {
   return document
 }
 
+function getPageContentByLanguage(language) {
+  return document.querySelectorAll(`[language="${language}"]`)
+}
+
 const acceptedLanguages = ['pt-BR', 'en-US']
 const defaultLanguage = 'pt-BR'
 
@@ -110,16 +114,16 @@ describe('Content interaction', () => {
       multilanguagejs.setLanguage('en-US')
 
       expect(getByText(document, 'My page')).toBeTruthy()
-      expect(document.querySelectorAll('[language="en-US"]')).toHaveLength(contentsOnPage)
+      expect(getPageContentByLanguage('en-US')).toHaveLength(contentsOnPage)
     })
 
     it('should rerender content after language change', () => {
       multilanguagejs.setLanguage('en-US')
-      expect(document.querySelectorAll('[language="en-US"]')).toHaveLength(contentsOnPage)
+      expect(getPageContentByLanguage('en-US')).toHaveLength(contentsOnPage)
       
       multilanguagejs.setLanguage('pt-BR')
       expect(getByText(document, 'Minha página')).toBeTruthy()
-      expect(document.querySelectorAll('[language="pt-BR"]')).toHaveLength(contentsOnPage)
+      expect(getPageContentByLanguage('pt-BR')).toHaveLength(contentsOnPage)
     })
 
     it(`should get ${contentsOnPage} language templates when call getLanguageTemplates`, () => {
@@ -128,7 +132,38 @@ describe('Content interaction', () => {
   })
 
   describe.skip('With partial translated content', () => {
+    const partialAcceptedLanguages = ['en-US', 'pt-BR']
+    const partialDefaultLanguage = 'en-US'
 
+    let multilanguagejs
+    const contentsOnPage = 10
+    const enContents = 9
+    const ptContents = 6
+
+    beforeEach(() => {
+      multilanguagejs = new MultilanguageJS(partialAcceptedLanguages, partialDefaultLanguage)
+
+      mountPage(pageWithMissingContent)
+    })
+
+    it('should render the default language correctly', () => {
+      expect(multilanguagejs.getLanguageTemplates()).toHaveLength(contentsOnPage)
+      expect(getPageContentByLanguage('en-US')).toHaveLength(0)
+
+      multilanguagejs.setLanguage(partialDefaultLanguage)
+
+      expect(getPageContentByLanguage('en-US')).toHaveLength(contentsOnPage)
+    })
+
+    it('should render all portuguese content and complement missing content with default', () => {
+      const languageToUse = 'pt-BR'
+
+      multilanguagejs.setLanguage(languageToUse)
+
+      expect(getPageContentByLanguage(languageToUse)).toHaveLength(ptContents)
+      // Check if the rendered content is complemented with en-US
+      expect(getPageContentByLanguage(partialDefaultLanguage)).toHaveLength(enContents - ptContents)
+    })
   })
 
   describe('Without content to translate', () => {

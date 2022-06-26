@@ -41,7 +41,6 @@ const pageWithMissingContent = `
       <title language='en-US' data-testid="document-title">My page</title>
       <title language='pt-BR' data-testid="document-title">Minha página</title>
     </template>
-    <title language='en-US' data-testid="document-title">My page</title>
 
     <style>
       .awesome {
@@ -54,42 +53,35 @@ const pageWithMissingContent = `
       <template type="language-group">
         <h1 language='en-US' data-testid="body-title">This is a simple Page</h1>
       </template>
-      <h1 language='en-US' data-testid="body-title">This is a simple Page</h1>
       
       <template type="language-group">
         <p language='en-US' data-testid="f-paragraph">This is my first paragraph.</p>
         <p language='pt-BR' data-testid="f-paragraph">Esse é o meu primeiro paragráfo.</p>
       </template>
-      <p language='en-US' data-testid="f-paragraph">This is my first paragraph.</p>
 
       <template type="language-group">
         <p language='en-US' class="awesome" data-testid="s-paragraph">The is the second paragraph.</p>
       </template>
-      <p language='en-US' class="awesome" data-testid="s-paragraph">The is the second paragraph.</p>
 
       <template type="language-group">
         <p language='en-US' id="third" class="awesome" data-testid="t-paragraph">The is the third paragraph.</p>
         <p language='pt-BR' id="third" class="awesome" data-testid="t-paragraph">Esse é meu terceiro paragráfo.</p>
       </template>
-      <p language='en-US' id="third" class="awesome" data-testid="t-paragraph">The is the third paragraph.</p>
       
       <ul data-testid="list">
         <template type="language-group">
           <li language='en-US' data-testid="list-f-item">My first item</li>
           <li language='pt-BR' data-testid="list-f-item">Meu primeiro item</li>
         </template>
-        <li language='en-US' data-testid="list-f-item">My first item</li>
 
         <template type="language-group">
           <li language='en-US' data-testid="list-s-item">My second item</li>
         </template>
-        <li language='en-US' data-testid="list-s-item">My second item</li>
 
         <template type="language-group">
           <li language='en-US' data-testid="list-s-item">My third item</li>
           <li language='pt-BR' data-testid="list-s-item">Meu terceiro item</li>
         </template>
-        <li language='en-US' data-testid="list-s-item">My third item</li>
       </ul>
 
       <template type="language-group">
@@ -104,11 +96,14 @@ const pageWithMissingContent = `
           <li>Meu terceiro item</li>
         </ul>
       </template>
-      <ul language='en-US' data-testid="list-complete">
-        <li>My first item</li>
-        <li>My second item</li>
-        <li>My third item</li>
-      </ul>
+
+      <template type="language-group">
+        <ul language='es' data-testid="list-complete-ad">
+          <li>Mi primer articulo</li>
+          <li>Mi segundo articulo</li>
+          <li>Mi tercer articulo</li>
+        </ul>
+      </template>
     </main>
   </body>
   </html>
