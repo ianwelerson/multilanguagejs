@@ -1,4 +1,4 @@
-import { getByText, queryAllByTestId, queryAllByAttribute } from '@testing-library/dom'
+import { getByText, queryAllByTestId } from '@testing-library/dom'
 import MultilanguageJS from './../multilanguagejs'
 
 // Mock for page content
@@ -6,7 +6,7 @@ import {
   pageWithouContent,
   pageWithMissingContent,
   pageWithContent
-} from './__mocks__/pagesContent'
+} from './__pages__/pagesContent'
 
 function mountPage(pageString) {
   document.documentElement.innerHTML = pageString
@@ -21,7 +21,7 @@ function getPageContentByLanguage(language) {
 const acceptedLanguages = ['pt-BR', 'en-US']
 const defaultLanguage = 'pt-BR'
 
-describe('Module instance', () => {
+describe('module instance', () => {
   let multilanguagejs
 
   beforeEach(() => {
@@ -32,7 +32,7 @@ describe('Module instance', () => {
     const localMutilanguagejs = new MultilanguageJS()
 
     expect(localMutilanguagejs.getAcceptedLanguages()).toHaveLength(0)
-    expect(localMutilanguagejs.getDefaultLanguage()).toBe(undefined)
+    expect(localMutilanguagejs.getDefaultLanguage()).toBeUndefined()
     expect(localMutilanguagejs.getActiveLanguage()).toBe('')
   })
 
@@ -56,7 +56,7 @@ describe('Module instance', () => {
     expect(multilanguagejs.getActiveLanguage()).toBe('')
 
     const language = 'pt-BR'
-    
+
     multilanguagejs.setLanguage(language)
 
     expect(multilanguagejs.getActiveLanguage()).toBe(language)
@@ -68,7 +68,7 @@ describe('Module instance', () => {
     const language = 'pt-BR'
 
     jest.spyOn(window.navigator, 'language', 'get').mockReturnValue(language)
-    
+
     multilanguagejs.setLanguageByBrowser()
 
     expect(multilanguagejs.getActiveLanguage()).toBe(language)
@@ -86,8 +86,8 @@ describe('Module instance', () => {
   })
 })
 
-describe('Content interaction', () => {
-  describe('With all content translated', () => {
+describe('content interaction', () => {
+  describe('with all content translated', () => {
     let multilanguagejs
     const contentsOnPage = 9
 
@@ -120,7 +120,7 @@ describe('Content interaction', () => {
     it('should rerender content after language change', () => {
       multilanguagejs.setLanguage('en-US')
       expect(getPageContentByLanguage('en-US')).toHaveLength(contentsOnPage)
-      
+
       multilanguagejs.setLanguage('pt-BR')
       expect(getByText(document, 'Minha página')).toBeTruthy()
       expect(getPageContentByLanguage('pt-BR')).toHaveLength(contentsOnPage)
@@ -131,7 +131,7 @@ describe('Content interaction', () => {
     })
   })
 
-  describe.skip('With partial translated content', () => {
+  describe.skip('with partial translated content', () => {
     const partialAcceptedLanguages = ['en-US', 'pt-BR']
     const partialDefaultLanguage = 'en-US'
 
@@ -166,7 +166,7 @@ describe('Content interaction', () => {
     })
   })
 
-  describe('Without content to translate', () => {
+  describe('without content to translate', () => {
     let multilanguagejs
     const contentsOnPage = 0
 

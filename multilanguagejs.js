@@ -1,4 +1,4 @@
-/* 
+/*
  * -----------------------------------------------------------------------------
  * MultilanguageJS - Multi language for static sites.
  * v0.1.0
@@ -10,128 +10,104 @@
  */
 
 class MultilanguageJS {
-
-    /* 
+  /*
      * Constructor for MultilanguageJS
      * - acceptedLanguages: required array of accepted languages
      * - defaultLanguage: the fallback language
     */
-    constructor(acceptedLanguages = [], defaultLanguage = '') {
+  constructor(acceptedLanguages = [], defaultLanguage = '') {
+    this._language = ''
+    this._defaultLanguage = defaultLanguage
+    this._acceptedLanguages = acceptedLanguages
+  }
 
-        this._language = '';
-        this._defaultLanguage = defaultLanguage;
-        this._acceptedLanguages = acceptedLanguages;
-
-    }
-
-    /*
+  /*
      * Set the the content language
      * - newLanguage: a string with the language you are setting
     */
-    setLanguage(newLanguage) {
-        
-        // Checking if the language is in acceptedLanguages
-        if(!this._acceptedLanguages.includes(newLanguage)) {
+  setLanguage(newLanguage) {
+    // Checking if the language is in acceptedLanguages
+    if (!this._acceptedLanguages.includes(newLanguage)) {
+      console.log('[Multilanguage] An unaccepted language is trying to be used. The default language or first accepted language has been applied.')
 
-            console.log('[Multilanguage] An unaccepted language is trying to be used. The default language or first accepted language has been applied.');
-            
-            this.setLanguage(this.getDefaultLanguage());
+      this.setLanguage(this.getDefaultLanguage())
 
-            return;
-
-        }
-
-        this.cleanActualContent();
-
-        this._language = newLanguage;
-        
-        this.showNewContent();
-
+      return
     }
 
-    /*
+    this.cleanActualContent()
+
+    this._language = newLanguage
+
+    this.showNewContent()
+  }
+
+  /*
      * Set the page language by browser language
     */
-    setLanguageByBrowser() {
-        
-        let browserLanguage = navigator.language || navigator.userLanguage; 
+  setLanguageByBrowser() {
+    const browserLanguage = navigator.language || navigator.userLanguage
 
-        this.setLanguage(browserLanguage);
+    this.setLanguage(browserLanguage)
+  }
 
-    }
-
-    /*
+  /*
      * Get the active language
     */
-    getActiveLanguage() {
+  getActiveLanguage() {
+    return this._language
+  }
 
-        return this._language;
-
-    }
-    
-    /*
+  /*
      * Get the array of accepted languages
     */
-    getAcceptedLanguages() {
+  getAcceptedLanguages() {
+    return this._acceptedLanguages
+  }
 
-        return this._acceptedLanguages;
-
-    }
-
-    /*
+  /*
      * Get the the default language, used as a fallback
     */
-    getDefaultLanguage() {
+  getDefaultLanguage() {
+    return this._defaultLanguage ? this._defaultLanguage : this._acceptedLanguages[0]
+  }
 
-        return this._defaultLanguage ? this._defaultLanguage : this._acceptedLanguages[0];
-        
-    }
-
-    /*
+  /*
      * Search in page for any language 'template' and return all found elements
     */
-    getLanguageTemplates() {
-    
-        let templates = document.querySelectorAll(`template[type=language-group]`);
-        
-        return templates;
-    
-    }
-    
-    /*
+  getLanguageTemplates() {
+    const templates = document.querySelectorAll('template[type=language-group]')
+
+    return templates
+  }
+
+  /*
      * Use 'template' elements found to show page content according to language
     */
-    showNewContent() {
+  showNewContent() {
+    const templates = this.getLanguageTemplates()
+    const actualLanguage = this._language
 
-        let templates = this.getLanguageTemplates();
-        let actualLanguage = this._language;
-        
-        // Show a log with the language and templates found
-        console.log(`[Multilanguage] ${templates.length} contents translated to ${this._language}.`);
+    // Show a log with the language and templates found
+    console.log(`[Multilanguage] ${templates.length} contents translated to ${this._language}.`)
 
-        templates.forEach(function(template) {
+    templates.forEach(function (template) {
+      const languageContent = template.content.cloneNode(true).querySelector(`[language=${actualLanguage}]`)
 
-            let languageContent = template.content.cloneNode(true).querySelector(`[language=${actualLanguage}]`);
-            
-            template.parentNode.insertBefore(languageContent, template);
+      template.parentNode.insertBefore(languageContent, template)
+    })
+  }
 
-        });      
-        
-    }
-    
-    /*
+  /*
      * Remove any element with attr 'language'
     */
-    cleanActualContent() {
+  cleanActualContent() {
+    const elements = document.querySelectorAll('[language]')
 
-        let elements = document.querySelectorAll(`[language]`);
-        
-        elements.forEach(function(element) {
-            element.remove();
-        });
-
-    }
- 
+    elements.forEach(function (element) {
+      element.remove()
+    })
+  }
 }
 
-export default MultilanguageJS;
+export default MultilanguageJS

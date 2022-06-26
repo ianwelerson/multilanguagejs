@@ -180,8 +180,8 @@ const pageWithContent = `
   </body>
   </html>
 `
-export { 
+export {
   pageWithouContent,
   pageWithMissingContent,
-  pageWithContent,
+  pageWithContent
 }
