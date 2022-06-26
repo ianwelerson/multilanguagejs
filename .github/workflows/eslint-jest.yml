@@ -1,0 +1,19 @@
+name: ESLint and Jest Unit Tests
+
+on:
+  push:
+    branches: ["feature/unit-test-minor-fixes"]
+  workflow_dispatch:
+jobs:
+  eslint-jest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.0
+          cache: 'npm'
+      - run: npm install
+      - run: npm lint:check
+      - run: npm test
+
