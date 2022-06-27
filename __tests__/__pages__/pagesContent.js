@@ -1,6 +1,4 @@
 const pageWithouContent = `
-  <!DOCTYPE html>
-  <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,12 +25,9 @@ const pageWithouContent = `
       </ul>
     </main>
   </body>
-  </html>
 `
 
 const pageWithMissingContent = `
-  <!DOCTYPE html>
-  <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -106,7 +101,6 @@ const pageWithMissingContent = `
       </template>
     </main>
   </body>
-  </html>
 `
 
 const pageWithContent = `
@@ -178,7 +172,6 @@ const pageWithContent = `
       </template>
     </main>
   </body>
-  </html>
 `
 export {
   pageWithouContent,
