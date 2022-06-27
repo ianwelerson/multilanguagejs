@@ -87,9 +87,14 @@ class MultilanguageJS {
   showNewContent() {
     const templates = this.getLanguageTemplates()
     const actualLanguage = this._language
+    const defaultLanguage = this._defaultLanguage
 
     templates.forEach(function (template) {
-      const languageContent = template.content.cloneNode(true).querySelector(`[language=${actualLanguage}]`)
+      const languageContent = template.content.cloneNode(true).querySelector(`[language=${actualLanguage}]`) ?? template.content.cloneNode(true).querySelector(`[language=${defaultLanguage}]`)
+
+      if (!languageContent) {
+        return
+      }
 
       template.parentNode.insertBefore(languageContent, template)
     })

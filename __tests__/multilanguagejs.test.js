@@ -131,7 +131,7 @@ describe('content interaction', () => {
     })
   })
 
-  describe.skip('with partial translated content', () => {
+  describe('with partial translated content', () => {
     const partialAcceptedLanguages = ['en-US', 'pt-BR']
     const partialDefaultLanguage = 'en-US'
 
@@ -152,7 +152,7 @@ describe('content interaction', () => {
 
       multilanguagejs.setLanguage(partialDefaultLanguage)
 
-      expect(getPageContentByLanguage('en-US')).toHaveLength(contentsOnPage)
+      expect(getPageContentByLanguage('en-US')).toHaveLength(contentsOnPage - 1) // One of the contents is with an unaccepted language
     })
 
     it('should render all portuguese content and complement missing content with default', () => {
