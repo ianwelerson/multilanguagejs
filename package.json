@@ -1,6 +1,6 @@
 {
   "name": "multilanguagejs",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A simple way to have internationalization on static websites.",
   "main": "multilanguagejs.js",
   "scripts": {
