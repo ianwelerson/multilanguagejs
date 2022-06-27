@@ -1,0 +1,34 @@
+name: ESLint and Jest Unit Tests
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - '*'
+      - '!main'
+      - '!develop'
+  workflow_dispatch:
+jobs:
+  eslint-jest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.0
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint check
+        continue-on-error: false
+        run: npm run lint:check
+
+      - name: Run Jest Unit Tests
+        continue-on-error: false
+        run: npm run test
+
