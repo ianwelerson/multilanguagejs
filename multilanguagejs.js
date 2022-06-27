@@ -46,7 +46,7 @@ class MultilanguageJS {
      * Set the page language by browser language
     */
   setLanguageByBrowser() {
-    const browserLanguage = navigator.language || navigator.userLanguage
+    const browserLanguage = navigator.language
 
     this.setLanguage(browserLanguage)
   }
