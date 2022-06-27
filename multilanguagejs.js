@@ -15,8 +15,8 @@ class MultilanguageJS {
      * - acceptedLanguages: required array of accepted languages
      * - defaultLanguage: the fallback language
     */
-  constructor(acceptedLanguages = [], defaultLanguage = '') {
-    this._language = ''
+  constructor(acceptedLanguages = [], defaultLanguage = null) {
+    this._language = null
     this._defaultLanguage = defaultLanguage
     this._acceptedLanguages = acceptedLanguages
   }
@@ -55,7 +55,7 @@ class MultilanguageJS {
      * Get the active language
     */
   getActiveLanguage() {
-    return this._language
+    return this._language ? this._language : null
   }
 
   /*
@@ -69,7 +69,9 @@ class MultilanguageJS {
      * Get the the default language, used as a fallback
     */
   getDefaultLanguage() {
-    return this._defaultLanguage ? this._defaultLanguage : this._acceptedLanguages[0]
+    const fallbackLanguage = this._acceptedLanguages[0] ?? null
+
+    return this._defaultLanguage ? this._defaultLanguage : fallbackLanguage
   }
 
   /*

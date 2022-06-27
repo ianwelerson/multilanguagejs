@@ -32,8 +32,8 @@ describe('module instance', () => {
     const localMutilanguagejs = new MultilanguageJS()
 
     expect(localMutilanguagejs.getAcceptedLanguages()).toHaveLength(0)
-    expect(localMutilanguagejs.getDefaultLanguage()).toBeUndefined()
-    expect(localMutilanguagejs.getActiveLanguage()).toBe('')
+    expect(localMutilanguagejs.getDefaultLanguage()).toBeNull()
+    expect(localMutilanguagejs.getActiveLanguage()).toBeNull()
   })
 
   it('should create an instance of MultilanguageJS', () => {
@@ -49,11 +49,11 @@ describe('module instance', () => {
   })
 
   it('should not have an active language', () => {
-    expect(multilanguagejs.getActiveLanguage()).toBe('')
+    expect(multilanguagejs.getActiveLanguage()).toBeNull()
   })
 
   it('should be possible to set the language manually', () => {
-    expect(multilanguagejs.getActiveLanguage()).toBe('')
+    expect(multilanguagejs.getActiveLanguage()).toBeNull()
 
     const language = 'pt-BR'
 
@@ -63,7 +63,7 @@ describe('module instance', () => {
   })
 
   it('should be possible to set the language using navigator language', () => {
-    expect(multilanguagejs.getActiveLanguage()).toBe('')
+    expect(multilanguagejs.getActiveLanguage()).toBeNull()
 
     const language = 'pt-BR'
 
