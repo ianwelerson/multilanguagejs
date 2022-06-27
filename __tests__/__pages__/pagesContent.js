@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const pageWithouContent = `
   <head>
     <meta charset="UTF-8">

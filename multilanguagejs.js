@@ -89,8 +89,10 @@ class MultilanguageJS {
     const actualLanguage = this._language
     const defaultLanguage = this._defaultLanguage
 
-    templates.forEach(function (template) {
-      const languageContent = template.content.cloneNode(true).querySelector(`[language=${actualLanguage}]`) ?? template.content.cloneNode(true).querySelector(`[language=${defaultLanguage}]`)
+    templates.forEach((template) => {
+      const languageContent =
+        template.content.cloneNode(true).querySelector(`[language=${actualLanguage}]`) ??
+        template.content.cloneNode(true).querySelector(`[language=${defaultLanguage}]`)
 
       if (!languageContent) {
         return
@@ -106,7 +108,7 @@ class MultilanguageJS {
   cleanActualContent() {
     const elements = document.querySelectorAll('[language]')
 
-    elements.forEach(function (element) {
+    elements.forEach((element) => {
       element.remove()
     })
   }

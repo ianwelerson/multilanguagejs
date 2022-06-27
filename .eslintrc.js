@@ -22,6 +22,8 @@ module.exports = {
       anonymous: 'always',
       named: 'never',
       asyncArrow: 'always'
-    }]
+    }],
+    'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
+    'max-len': ['error', { code: 100, ignoreComments: true }]
   }
 }
