@@ -28,8 +28,6 @@ class MultilanguageJS {
   setLanguage(newLanguage) {
     // Checking if the language is in acceptedLanguages
     if (!this._acceptedLanguages.includes(newLanguage)) {
-      console.log('[Multilanguage] An unaccepted language is trying to be used. The default language or first accepted language has been applied.')
-
       this.setLanguage(this.getDefaultLanguage())
 
       return
@@ -89,9 +87,6 @@ class MultilanguageJS {
   showNewContent() {
     const templates = this.getLanguageTemplates()
     const actualLanguage = this._language
-
-    // Show a log with the language and templates found
-    console.log(`[Multilanguage] ${templates.length} contents translated to ${this._language}.`)
 
     templates.forEach(function (template) {
       const languageContent = template.content.cloneNode(true).querySelector(`[language=${actualLanguage}]`)
