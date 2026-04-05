@@ -1,89 +1,182 @@
-# MultilanguageJS
+<p align="center">
+  <h1 align="center">🌍 MultilanguageJS</h1>
+  <p align="center">
+    <strong>Simple, zero-dependency i18n for static websites.</strong>
+  </p>
+  <p align="center">
+    Add multi-language support with just a few lines of code — no complex configurations or heavy frameworks needed.
+  </p>
+  <p align="center">
+    <a href="https://www.npmjs.com/package/multilanguagejs"><img src="https://img.shields.io/npm/v/multilanguagejs?style=flat-square&color=cb3837" alt="npm version" /></a>
+    <a href="https://www.npmjs.com/package/multilanguagejs"><img src="https://img.shields.io/npm/dm/multilanguagejs?style=flat-square&color=blue" alt="npm downloads" /></a>
+    <a href="https://github.com/ianwelerson/multilanguagejs/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/multilanguagejs?style=flat-square&color=green" alt="license" /></a>
+    <a href="https://bundlephobia.com/package/multilanguagejs"><img src="https://img.shields.io/bundlephobia/minzip/multilanguagejs?style=flat-square&color=orange" alt="bundle size" /></a>
+  </p>
+</p>
 
-A simple way to have internationalization on static websites. 
+<br />
 
-## Installing
+## ✨ Features
 
-You can install using yarn or by cloning the repo.
+- 🚫 **Zero dependencies** — nothing to install besides the lib itself
+- 🔀 **Two translation modes** — HTML templates and string dictionaries
+- 🌐 **Browser language detection** — auto-detect with `navigator.language`
+- 🔄 **Fallback support** — missing translations gracefully fall back to your default language
+- 🔷 **TypeScript** — full type definitions included out of the box
+- 🪶 **Tiny** — ~2KB minified, because your users shouldn't pay for i18n
+- 📦 **CDN + npm** — use it however you want
 
-#### Using Yarn
+<br />
 
+## 📥 Installation
 
-```
-$ yarn add https://github.com/ianwelerson/multilanguagejs.git
-```
+### npm
 
-#### Using the repo
-
-```
-$ git clone https://github.com/ianwelerson/multilanguagejs.git
-```
-
-## Using
-
-1) Import in js file
-
-```
-import MultilanguageJS from 'multilanguagejs';
-```
-
-2) Initialize the MultilanguageJS
-
-
-```
-// As a first param you need to pass an array of accepted languages
-// As a second param you need to a language to fallback.
-let multilanguage = new MultilanguageJS(
-    ['pt-BR', 'en-US'],
-    'pt-BR'
-);
+```bash
+npm install multilanguagejs
 ```
 
-3) Set the active language
+### CDN
 
-```
-// To use the browser language you can call 'setLanguageByBrowser()':
-multilanguage.setLanguageByBrowser();
-
-// To set manually a language you call 'setLanguage('language')':
-multilanguage.setLanguage('pt-BR');
+```html
+<script src="https://unpkg.com/multilanguagejs/dist/multilanguagejs.umd.js"></script>
 ```
 
-4) Insert the HTML content
+<br />
 
+## 🚀 Quick Start
+
+### Option 1: String Dictionaries
+
+The simplest approach — provide translations as a JavaScript object and mark elements with `data-i18n`.
+
+```html
+<h1 data-i18n="greeting"></h1>
+<p data-i18n="description"></p>
+
+<script src="https://unpkg.com/multilanguagejs/dist/multilanguagejs.umd.js"></script>
+<script>
+  const ml = new MultilanguageJS({
+    languages: ["en-US", "pt-BR"],
+    defaultLanguage: "en-US",
+    translations: {
+      "en-US": {
+        greeting: "Hello!",
+        description: "Welcome to my website.",
+      },
+      "pt-BR": {
+        greeting: "Olá!",
+        description: "Bem-vindo ao meu site.",
+      },
+    },
+  });
+
+  ml.setLanguageFromBrowser();
+</script>
 ```
-// Create a template tag with attr 'type="language-group"'
+
+### Option 2: HTML Templates
+
+Use native `<template>` tags to define content variants directly in your HTML.
+
+```html
 <template type="language-group">
-  // Inside then you put all your variants for this content using the attr 'language="your-Language"'
-  // The tag used can be any one, just put the attr for each language variation
-  <h3 language='pt-BR'>Olá Pessoal!</h3>
-  <h3 language='en-US'>Hi everyone!</h3>
+  <h1 language="en-US">Hello!</h1>
+  <h1 language="pt-BR">Olá!</h1>
 </template>
+
+<template type="language-group">
+  <p language="en-US">Welcome to my website.</p>
+  <p language="pt-BR">Bem-vindo ao meu site.</p>
+</template>
+
+<script type="module">
+  import { MultilanguageJS } from "multilanguagejs";
+
+  const ml = new MultilanguageJS({
+    languages: ["en-US", "pt-BR"],
+    defaultLanguage: "en-US",
+  });
+
+  ml.setLanguageFromBrowser();
+</script>
 ```
 
-5) Others
+### 🤝 Combining Both Modes
 
+You can use templates and string dictionaries together in the same page. Templates are great for complex HTML blocks, while string dictionaries work well for simple text content.
+
+<br />
+
+## 📖 API
+
+### `new MultilanguageJS(options)`
+
+Creates a new instance.
+
+| Option            | Type       | Required | Description                                          |
+| ----------------- | ---------- | -------- | ---------------------------------------------------- |
+| `languages`       | `string[]` | ✅       | Array of accepted language codes                     |
+| `defaultLanguage` | `string`   | ➖       | Fallback language (defaults to first in `languages`) |
+| `translations`    | `object`   | ➖       | Translation dictionaries keyed by language           |
+
+### Methods
+
+| Method                          | Description                                                                                     |
+| ------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `setLanguage(lang)`             | Set the active language. Falls back to default if the language is not accepted.                 |
+| `setLanguageFromBrowser()`      | Set the language based on `navigator.language`.                                                 |
+| `getActiveLanguage()`           | Returns the current active language or `null`.                                                  |
+| `getAcceptedLanguages()`        | Returns the array of accepted languages.                                                        |
+| `getDefaultLanguage()`          | Returns the default/fallback language.                                                          |
+| `setTranslations(translations)` | Update the translation dictionaries at runtime. Immediately re-applies if a language is active. |
+| `getLanguageTemplates()`        | Returns all `<template type="language-group">` elements found in the document.                  |
+
+<br />
+
+## 🔀 Language Switcher Example
+
+```html
+<select id="lang-switcher">
+  <option value="en-US">English</option>
+  <option value="pt-BR">Português</option>
+</select>
+
+<script>
+  document.getElementById("lang-switcher").addEventListener("change", (e) => {
+    ml.setLanguage(e.target.value);
+  });
+</script>
 ```
-// To change the language you can use 'setLanguage("your-Language")'
-multilanguage.setLanguage('pt-BR');
 
-// To get actual language you can use 'getActiveLanguage()'
-multilanguage.getActiveLanguage();
+<br />
 
-// To get an array of accepted language you can use 'getAcceptedLanguages()'
-multilanguage.getAcceptedLanguages();
+## 🔷 TypeScript
 
-// To get the default language you can use 'getDefaultLanguage()'
-multilanguage.getDefaultLanguage();
+Full type definitions are included. Import types directly:
 
-// To use the browser language as page language you can use 'setLanguageByBrowser()'
-multilanguage.setLanguageByBrowser();
+```ts
+import {
+  MultilanguageJS,
+  type MultilanguageJSOptions,
+  type Translations,
+} from "multilanguagejs";
 ```
 
-## Author
+<br />
 
-* **Ian Welerson** [IanWelerson.com](http://ianwelerson.com)
+## 🛠️ Development
 
-## License
+```bash
+npm install        # Install dependencies
+npm test           # Run tests
+npm run test:watch # Run tests in watch mode
+npm run build      # Build for production
+npm run lint       # Lint source code
+```
 
-This project is licensed under the MIT License
+<br />
+
+## 📄 License
+
+MIT — Made with ❤️ by [Ian Welerson](https://github.com/ianwelerson)

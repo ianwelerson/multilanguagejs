@@ -1,5 +1,4 @@
-/* eslint-disable max-len */
-const pageWithouContent = `
+export const pageWithoutContent = `
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +13,7 @@ const pageWithouContent = `
   <body>
     <main>
       <h1 data-testid="body-title">This is a simple Page</h1>
-    
+
       <p data-testid="f-paragraph">This is my first paragraph.</p>
       <p class="awesome" data-testid="s-paragraph">The is the second paragraph.</p>
       <p id="third" class="awesome" data-testid="t-paragraph">The is the third paragraph.</p>
@@ -28,7 +27,7 @@ const pageWithouContent = `
   </body>
 `
 
-const pageWithMissingContent = `
+export const pageWithMissingContent = `
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,7 +48,7 @@ const pageWithMissingContent = `
       <template type="language-group">
         <h1 language='en-US' data-testid="body-title">This is a simple Page</h1>
       </template>
-      
+
       <template type="language-group">
         <p language='en-US' data-testid="f-paragraph">This is my first paragraph.</p>
         <p language='pt-BR' data-testid="f-paragraph">Esse é o meu primeiro paragráfo.</p>
@@ -63,7 +62,7 @@ const pageWithMissingContent = `
         <p language='en-US' id="third" class="awesome" data-testid="t-paragraph">The is the third paragraph.</p>
         <p language='pt-BR' id="third" class="awesome" data-testid="t-paragraph">Esse é meu terceiro paragráfo.</p>
       </template>
-      
+
       <ul data-testid="list">
         <template type="language-group">
           <li language='en-US' data-testid="list-f-item">My first item</li>
@@ -104,7 +103,17 @@ const pageWithMissingContent = `
   </body>
 `
 
-const pageWithContent = `
+export const pageWithI18nAttributes = `
+  <body>
+    <main>
+      <h1 data-i18n="greeting"></h1>
+      <p data-i18n="farewell"></p>
+      <p data-i18n="description"></p>
+    </main>
+  </body>
+`
+
+export const pageWithContent = `
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -126,7 +135,7 @@ const pageWithContent = `
         <h1 language='en-US' data-testid="body-title">This is a simple Page</h1>
         <h1 language='pt-BR' data-testid="body-title">Essa é uma simples página</h1>
       </template>
-      
+
       <template type="language-group">
         <p language='en-US' data-testid="f-paragraph">This is my first paragraph.</p>
         <p language='pt-BR' data-testid="f-paragraph">Esse é o meu primeiro paragráfo.</p>
@@ -141,7 +150,7 @@ const pageWithContent = `
         <p language='en-US' id="third" class="awesome" data-testid="t-paragraph">The is the third paragraph.</p>
         <p language='pt-BR' id="third" class="awesome" data-testid="t-paragraph">Esse é meu terceiro paragráfo.</p>
       </template>
-      
+
       <ul data-testid="list">
         <template type="language-group">
           <li language='en-US' data-testid="list-f-item">My first item</li>
@@ -174,8 +183,3 @@ const pageWithContent = `
     </main>
   </body>
 `
-export {
-  pageWithouContent,
-  pageWithMissingContent,
-  pageWithContent
-}
