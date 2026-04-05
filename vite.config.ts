@@ -7,7 +7,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'MultilanguageJS',
       formats: ['es', 'umd'],
-      fileName: (format) => `multilanguagejs.${format}.js`,
+      fileName: (format) => format === 'umd' ? 'multilanguagejs.umd.cjs' : `multilanguagejs.${format}.js`,
     },
     outDir: 'dist',
     sourcemap: true,

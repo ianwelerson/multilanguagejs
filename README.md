@@ -4,11 +4,10 @@
     <strong>Simple, zero-dependency i18n for static websites.</strong>
   </p>
   <p align="center">
-    Add multi-language support with just a few lines of code — no complex configurations or heavy frameworks needed.
+    Add multi-language support with just a few lines of code, no complex configurations or heavy frameworks needed.
   </p>
   <p align="center">
     <a href="https://www.npmjs.com/package/multilanguagejs"><img src="https://img.shields.io/npm/v/multilanguagejs?style=flat-square&color=cb3837" alt="npm version" /></a>
-    <a href="https://www.npmjs.com/package/multilanguagejs"><img src="https://img.shields.io/npm/dm/multilanguagejs?style=flat-square&color=blue" alt="npm downloads" /></a>
     <a href="https://github.com/ianwelerson/multilanguagejs/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/multilanguagejs?style=flat-square&color=green" alt="license" /></a>
     <a href="https://bundlephobia.com/package/multilanguagejs"><img src="https://img.shields.io/bundlephobia/minzip/multilanguagejs?style=flat-square&color=orange" alt="bundle size" /></a>
   </p>
@@ -18,13 +17,13 @@
 
 ## ✨ Features
 
-- 🚫 **Zero dependencies** — nothing to install besides the lib itself
-- 🔀 **Two translation modes** — HTML templates and string dictionaries
-- 🌐 **Browser language detection** — auto-detect with `navigator.language`
-- 🔄 **Fallback support** — missing translations gracefully fall back to your default language
-- 🔷 **TypeScript** — full type definitions included out of the box
-- 🪶 **Tiny** — ~2KB minified, because your users shouldn't pay for i18n
-- 📦 **CDN + npm** — use it however you want
+- 🚫 **Zero dependencies** - nothing to install besides the lib itself
+- 🔀 **Two translation modes** - HTML templates and string dictionaries
+- 🌐 **Browser language detection** - auto-detect with `navigator.language`
+- 🔄 **Fallback support** - missing translations gracefully fall back to your default language
+- 🔷 **TypeScript** - full type definitions included out of the box
+- 🪶 **Tiny** - ~2KB minified, because your users shouldn't pay for i18n
+- 📦 **CDN + npm** - use it however you want
 
 <br />
 
@@ -39,7 +38,7 @@ npm install multilanguagejs
 ### CDN
 
 ```html
-<script src="https://unpkg.com/multilanguagejs/dist/multilanguagejs.umd.js"></script>
+<script src="https://unpkg.com/multilanguagejs/dist/multilanguagejs.umd.cjs"></script>
 ```
 
 <br />
@@ -48,13 +47,13 @@ npm install multilanguagejs
 
 ### Option 1: String Dictionaries
 
-The simplest approach — provide translations as a JavaScript object and mark elements with `data-i18n`.
+The simplest approach: provide translations as a JavaScript object and mark elements with `data-i18n`.
 
 ```html
 <h1 data-i18n="greeting"></h1>
 <p data-i18n="description"></p>
 
-<script src="https://unpkg.com/multilanguagejs/dist/multilanguagejs.umd.js"></script>
+<script src="https://unpkg.com/multilanguagejs/dist/multilanguagejs.umd.cjs"></script>
 <script>
   const ml = new MultilanguageJS({
     languages: ["en-US", "pt-BR"],
@@ -91,7 +90,7 @@ Use native `<template>` tags to define content variants directly in your HTML.
 </template>
 
 <script type="module">
-  import { MultilanguageJS } from "multilanguagejs";
+  import MultilanguageJS from "multilanguagejs";
 
   const ml = new MultilanguageJS({
     languages: ["en-US", "pt-BR"],
@@ -156,11 +155,8 @@ Creates a new instance.
 Full type definitions are included. Import types directly:
 
 ```ts
-import {
-  MultilanguageJS,
-  type MultilanguageJSOptions,
-  type Translations,
-} from "multilanguagejs";
+import MultilanguageJS from "multilanguagejs";
+import type { MultilanguageJSOptions, Translations } from "multilanguagejs";
 ```
 
 <br />
@@ -179,4 +175,4 @@ npm run lint       # Lint source code
 
 ## 📄 License
 
-MIT — Made with ❤️ by [Ian Welerson](https://github.com/ianwelerson)
+MIT - [Ian Welerson](https://github.com/ianwelerson)

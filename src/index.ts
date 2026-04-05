@@ -7,7 +7,7 @@ export interface MultilanguageJSOptions {
   translations?: Translations
 }
 
-export class MultilanguageJS {
+export default class MultilanguageJS {
   private language: string | null = null
   private defaultLanguage: string | null
   private acceptedLanguages: string[]
