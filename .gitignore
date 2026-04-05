@@ -1,6 +1,4 @@
-# Folders
 node_modules
+dist
 coverage
-
-# Files
-sample.html
+*.tsbuildinfo

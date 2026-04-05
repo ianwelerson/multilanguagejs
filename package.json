@@ -1,39 +1,58 @@
 {
   "name": "multilanguagejs",
-  "version": "0.2.0",
-  "description": "A simple way to have internationalization on static websites.",
-  "main": "multilanguagejs.js",
+  "version": "1.0.0",
+  "description": "A simple, zero-dependency i18n library for static websites.",
+  "type": "module",
+  "main": "dist/multilanguagejs.umd.js",
+  "module": "dist/multilanguagejs.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/multilanguagejs.es.js",
+      "require": "./dist/multilanguagejs.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
   "scripts": {
-    "test": "jest",
-    "lint:check": "eslint \"**/*.js\" --ignore-pattern node_modules/",
-    "lint:fix": "npm run lint:check -- --fix"
+    "dev": "vite",
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ianwelerson/multilanguagejs.git"
   },
   "keywords": [
+    "i18n",
+    "internationalization",
     "multilanguage",
-    "javascript"
+    "translation",
+    "static-site",
+    "javascript",
+    "typescript"
   ],
   "author": "Ian Welerson",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ianwelerson/multilanguagejs/issues"
   },
-  "homepage": "http://multilanguagejs.ianwelerson.com/",
+  "homepage": "https://github.com/ianwelerson/multilanguagejs#readme",
   "devDependencies": {
-    "@babel/core": "^7.18.5",
-    "@babel/preset-env": "^7.18.2",
-    "@testing-library/dom": "^8.14.0",
-    "babel-jest": "^28.1.1",
-    "eslint": "^8.18.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jest": "^26.5.3",
-    "eslint-plugin-n": "^15.2.3",
-    "eslint-plugin-promise": "^6.0.0",
-    "jest": "^28.1.1",
-    "jest-environment-jsdom": "^28.1.1"
+    "@testing-library/dom": "^10.4.0",
+    "eslint": "^9.0.0",
+    "jsdom": "^25.0.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.0.0",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0"
   }
 }
