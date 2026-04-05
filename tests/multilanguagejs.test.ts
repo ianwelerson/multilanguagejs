@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { getByText, queryAllByTestId } from '@testing-library/dom'
-import { MultilanguageJS } from '../src/index'
+import MultilanguageJS from '../src/index'
 import {
   pageWithoutContent,
   pageWithMissingContent,
